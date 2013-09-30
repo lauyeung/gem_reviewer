@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: gem_reviewer_development
   pool: 5
-  username: gem_reviewer
+  username:
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: gem_reviewer_test
   pool: 5
-  username: gem_reviewer
+  username:
   password:
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: gem_reviewer_production
   pool: 5
-  username: gem_reviewer
+  username:
   password:
