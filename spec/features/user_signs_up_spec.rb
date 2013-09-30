@@ -30,6 +30,29 @@ So I may enter my votes and reviews for gems
       expect(User.count).to eql(prev_count +1)
 
     end
+
+    scenario "with invalid info" do
+      prev_count = User.count
+      visit root_path
+      click_link "Sign Up"
+      click_button "Sign up"
+
+      expect(page).should have_content("can't be blank")
+      expect(User.count).to eql(prev_count)
+    end
+
+    scenario "password confirmation does not match password" do
+    prev_count = User.count
+    visit root_path
+      click_link "Sign Up"
+      fill_in "Email", with: "user@example.com"
+      fill_in("Password", with: '12345678', :match => :prefer_exact)
+      fill_in("Password confirmation", with: 'password', :match => :prefer_exact)
+      click_button "Sign up"
+
+      expect(page).to have_content("doesn't match")
+      expect(page).to have_content("Sign Up")
+    end
   end
 
 
