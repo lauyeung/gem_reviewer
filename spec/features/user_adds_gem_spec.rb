@@ -8,7 +8,6 @@ feature 'user adds gem', %Q{
   } do
 
   # ACCEPTANCE CRITERIA
-  # * Gem submitted must exist
   # * Added Gem must have a name
   # * An error message is received if information is invalid
   # * A message is received if gem is successfully added
