@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= notice %>
+  <nav>
+    <ul>
+      <%- if user_signed_in? -%>
+        <li><%= link_to 'Sign Out', '#'%></li>
+        <%- else -%>
+      <li><%= link_to "Sign Up", new_user_registration_path %>
+        <%- end -%>
+    </ul>
+  </nav>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
 
 <%= yield %>
 
