@@ -15,7 +15,7 @@ class RubyGemsController < ApplicationController
   end
 
   def index
-    @ruby_gems = RubyGem.all.order('name')
+    @ruby_gems = RubyGem.order('name')
   end
 
 
