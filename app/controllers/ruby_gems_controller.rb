@@ -1,4 +1,5 @@
 class RubyGemsController < ApplicationController
+  before_filter :authenticate_user!, except: [:show, :index]
 
   def new
     @ruby_gem = RubyGem.new
