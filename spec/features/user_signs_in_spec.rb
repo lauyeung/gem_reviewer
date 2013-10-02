@@ -24,32 +24,32 @@ feature "signing in", %Q{
   end
 
   scenario ' a nonexistent email and password is supplied' do
-     visit new_user_session_path
-     click_button "Sign In"
+    visit new_user_session_path
+    click_button "Sign In"
 
-     expect(page).to have_content("Invalid email or password.")
-     expect(page).to_not have_content("Sign Out")
-     expect(page).to_not have_content("You're In!")
-end
+    expect(page).to have_content("Invalid email or password.")
+    expect(page).to_not have_content("Sign Out")
+    expect(page).to_not have_content("You're In!")
+  end
 
   scenario 'a existing email with the wrong password is denied access ' do
     user = FactoryGirl.create(:user)
-     visit new_user_session_path
+    visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in 'Password', with: 'incorrectpassword'
     click_button "Sign In"
 
-     expect(page).to have_content("Invalid email or password.")
-     expect(page).to_not have_content("Sign Out")
-     expect(page).to_not have_content("You're In!")
+    expect(page).to have_content("Invalid email or password.")
+    expect(page).to_not have_content("Sign Out")
+    expect(page).to_not have_content("You're In!")
   end
 
-    scenario "an already authenticated user cannot re-sign in" do
-      user = FactoryGirl.create(:user)
-      visit new_user_session_path
-      fill_in "Email", with: user.email
-      fill_in 'Password', with: user.password
-      click_button "Sign In"
+  scenario "an already authenticated user cannot re-sign in" do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in 'Password', with: user.password
+    click_button "Sign In"
 
     expect(page).to have_content("Sign Out")
     expect(page).to_not have_content("Sign In")
