@@ -46,6 +46,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'state_machine'
 gem 'carrierwave'
+gem 'mini_magick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
