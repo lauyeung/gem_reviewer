@@ -11,9 +11,12 @@ feature 'view all gems', %Q{
   # * See a list of all gems that have been added
 
   scenario 'visit page with list of all gems' do
-    original = FactoryGirl.create(:ruby_gem)
+    gems = FactoryGirl.create_list(:ruby_gem, 3)
+
     visit ruby_gems_path
-    expect(page).to have_content(original.name)
+    gems.each do |gem|
+      expect(page).to have_content(gem.name)
+    end
   end
 
 end
