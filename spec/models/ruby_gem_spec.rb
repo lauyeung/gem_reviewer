@@ -6,7 +6,7 @@ describe RubyGem do
   it { should_not have_valid(:name).when(nil, '') }
 
   describe 'cannot enter already existing name' do
-    original = FactoryGirl.create(:ruby_gem)
+    let(:original) { FactoryGirl.create(:ruby_gem) }
     it { should_not have_valid(:name).when(original.name) }
   end
 
