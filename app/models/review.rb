@@ -8,8 +8,8 @@ class Review < ActiveRecord::Base
     validates_presence_of :title
     validates_presence_of :rating
     validates_presence_of :content
-    validates_presence_of :user_id
-    validates_presence_of :ruby_gem_id
+    validates_presence_of :user
+    validates_presence_of :ruby_gem
 
     validates_numericality_of :rating
     validates_inclusion_of :rating, :in => 1..10

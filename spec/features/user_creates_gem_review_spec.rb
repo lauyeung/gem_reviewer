@@ -14,57 +14,75 @@ feature 'user creates a gem review', %Q{
   # * I can delete my review
 
 let(:user) {FactoryGirl.create(:user)}
+let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
 
-  scenario 'user successfully adds gem review' do
-    prev_count = Review.count
+  scenario 'user navigates to a specific gem' do
+    # prev_count = Review.count
+    gem_to_review = ruby_gem
 
     user_signs_in(user)
-    new_gem
-    user_adds_review
+    visit ruby_gems_path
+    click_link gem_to_review.name
+    expect(page).to have_content('Add New Gem Review')
 
-    expect(page).to have_content("Review successfully saved")
-    expect(Review.count).to eql(prev_count + 1)
-    expect(page).to have_content("Home")
+    # expect(page).to have_content("Review successfully saved")
+    # expect(Review.count).to eql(prev_count + 1)
+    # expect(page).to have_content("Home")
   end
   
-  scenario 'user fails to add a gem review' do
-    # prev_count = Review.count 
+  scenario 'user adds a review' do 
+    gem_to_review = ruby_gem
 
-    # user_signs_in(user)
-    # new_gem
-    # click_button "Add New Review"
-    # click_button "Save"
- 
-    # expect(page).to have_content("can't be blank")
-    # expect(page).to have_content("Review successfully saved")
-    # expect(Review.count).to eql(prev_count)
+    user_signs_in(user)
+    visit ruby_gems_path
+    click_link gem_to_review.name
+
+    prev_count = ruby_gem.reviews.count 
+    fill_in "Title", with: "Awesome gem"
+    fill_in "Content", with: "Love this gem"
+    select 10, from: "Rating"
+
+    click_button "Save"
+
+    expect(page).to have_content("Review successfully added")
+    expect(ruby_gem.reviews.count).to eql(prev_count + 1)
+  end
+
+  scenario 'user fails to add a gem review' do
+    gem_to_review = ruby_gem
+
+    user_signs_in(user)
+    visit ruby_gems_path
+    click_link gem_to_review.name
+
+    prev_count = ruby_gem.reviews.count 
+
+    click_button "Save"
+    expect(page).to have_content("can't be blank")
+    expect(ruby_gem.reviews.count).to eql(prev_count)
   end
 
   scenario 'user tries to review same gem twice' do 
-    # prev_count = Review.count 
+    gem_to_review = ruby_gem
 
-    # user_signs_in(user)
-    # new_gem
-    # user_adds_review
- 
-    # expect(page).to have_content("You have already reviewed this gem")
-    # expect(page).to_not have_content("Review successfully saved")
-    # expect(Review.count).to eql(prev_count)
-  end
+    user_signs_in(user)
+    visit ruby_gems_path
+    click_link gem_to_review.name
+    fill_in "Title", with: "Sweet"
+    fill_in "Content", with: "Love this gem"
+    select 8, from: "Rating"
 
-  scenario 'user edits their review' do
-  end
+    click_button "Save"
 
-  scenario 'non-author fails to edit review' do 
-  end
+    prev_count = ruby_gem.reviews.count
+    fill_in "Title", with: "Sweet2"
+    fill_in "Content", with: "Love this gem2"
+    select 7, from: "Rating"
 
-  scenario 'user deletes their review' do 
-  end
+    click_button "Save"
 
-  scenario 'non-author fails to delete review' do 
-  end
-
-  scenario 'user views a list of reviews' do 
+    expect(ruby_gem.reviews.count).to eql(prev_count)
+    expect(page).to have_content("Can't review same gem twice")
   end
 
   def user_signs_in(user)
@@ -73,21 +91,5 @@ let(:user) {FactoryGirl.create(:user)}
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Sign In"
-  end
-
-  def new_gem
-      visit ruby_gems_path
-      click_link 'Add New Gem'
-      fill_in "Name", with: "Devise"
-      click_button "Add Gem"
-      click_link "Devise"
-  end
-
-  def user_adds_review
-    click_button "Add New Review"
-    fill_in "Rating", with: 7
-    fill_in "Title", with: "Awesome Gem"
-    fill_in "Content", with: "This gem rocks"
-    click_button "Save"
   end
 end

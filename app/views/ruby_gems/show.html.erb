@@ -1,0 +1,19 @@
+<%= @ruby_gem.name %>
+
+<p>
+  <strong>Reviews</strong><br>
+  <% @ruby_gem.reviews.each do |review| %>
+    <%= review.title %>
+    <%= review.content %>
+    <%= review.rating %>
+  <%- end -%>
+</p>
+
+<h1>Add New Gem Review</h1>
+
+<%= simple_form_for [@ruby_gem, @review] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= f.input :rating, collection: 1..10 %>
+  <%= f.submit 'Save' %>
+<%- end -%>

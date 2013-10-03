@@ -11,9 +11,11 @@ describe Review do
   it { should_not have_valid(:rating).when(nil,'','foo',11,0)}
 
   it { should have_valid(:ruby_gem).when(RubyGem.new)}
+  it { should_not have_valid(:ruby_gem).when(nil)}
 
   it { should have_valid(:user).when(User.new)}
+  it { should_not have_valid(:user).when(nil)}
 
-  it {should belong_to(:user)}
-  it {should belong_to(:ruby_gem)}
+  it { should belong_to(:user)}
+  it { should belong_to(:ruby_gem)}
 end

@@ -10,7 +10,7 @@
     <tbody>
       <% @ruby_gems.each do |ruby_gem| %>
         <tr>
-          <td><%= ruby_gem.name %></td>
+          <td><%=link_to ruby_gem.name, ruby_gem_path(ruby_gem) %></td>
         </tr>
       <% end %>
     </tbody>
