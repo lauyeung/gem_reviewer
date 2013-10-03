@@ -15,37 +15,79 @@ feature 'user creates a gem review', %Q{
 
 let(:user) {FactoryGirl.create(:user)}
 
-scenario 'user creates a review for a gem' do
-  prev_count = Review.count
+  scenario 'user successfully adds gem review' do
+    prev_count = Review.count
 
-  user_signs_in(user)
-  visit ruby_gems_path
-  click_link "Add New Gem"
-  fill_in "Name", with: "Devise"
-  click_button "Add Gem"
-  click_link "Devise"
-  click_button "Add Review"
-  fill_in "Review", with: "This gem rocks"
-  click_button "Save"
+    user_signs_in(user)
+    new_gem
+    user_adds_review
 
-  expect(page).to have_content("Review successfully saved")
-  expect(Review.count).to eql(prev_count + 1)
-end
+    expect(page).to have_content("Review successfully saved")
+    expect(Review.count).to eql(prev_count + 1)
+    expect(page).to have_content("Home")
+  end
+  
+  scenario 'user fails to add a gem review' do
+    # prev_count = Review.count 
 
-scenario 'user can only review a gem once' do 
-end
+    # user_signs_in(user)
+    # new_gem
+    # click_button "Add New Review"
+    # click_button "Save"
+ 
+    # expect(page).to have_content("can't be blank")
+    # expect(page).to have_content("Review successfully saved")
+    # expect(Review.count).to eql(prev_count)
+  end
 
-scenario 'user can edit their review' do
-end
+  scenario 'user tries to review same gem twice' do 
+    # prev_count = Review.count 
 
-scenario 'user can delete their review' do 
-end
+    # user_signs_in(user)
+    # new_gem
+    # user_adds_review
+ 
+    # expect(page).to have_content("You have already reviewed this gem")
+    # expect(page).to_not have_content("Review successfully saved")
+    # expect(Review.count).to eql(prev_count)
+  end
 
-def user_signs_in(user)
+  scenario 'user edits their review' do
+  end
+
+  scenario 'non-author fails to edit review' do 
+  end
+
+  scenario 'user deletes their review' do 
+  end
+
+  scenario 'non-author fails to delete review' do 
+  end
+
+  scenario 'user views a list of reviews' do 
+  end
+
+  def user_signs_in(user)
     visit '/'
     click_link 'Sign In'
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Sign In"
+  end
+
+  def new_gem
+      visit ruby_gems_path
+      click_link 'Add New Gem'
+      fill_in "Name", with: "Devise"
+      click_button "Add Gem"
+      click_link "Devise"
+  end
+
+  def user_adds_review
+    click_button "Add New Review"
+    fill_in "Rating", with: 7
+    fill_in "Title", with: "Awesome Gem"
+    fill_in "Content", with: "This gem rocks"
+    click_button "Save"
   end
 end
