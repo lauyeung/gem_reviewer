@@ -16,7 +16,8 @@ class RubyGemsController < ApplicationController
   end
 
   def index
-    @ruby_gems = RubyGem.order('name')
+    @q = RubyGem.search(params[:q])
+    @ruby_gems = @q.result(distinct: true)
   end
 
 
