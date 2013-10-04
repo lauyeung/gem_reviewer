@@ -9,11 +9,14 @@
   <%- end -%>
 </p>
 
-<h1>Add New Gem Review</h1>
+<%if @ruby_gem.reviews.where(user: current_user).empty? %>
 
-<%= simple_form_for [@ruby_gem, @review] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.input :rating, collection: 1..10 %>
-  <%= f.submit 'Save' %>
+  <h1>Add New Gem Review</h1>
+
+  <%= simple_form_for [@ruby_gem, @review] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.input :rating, collection: 1..10 %>
+    <%= f.submit 'Save' %>
+  <%- end -%>
 <%- end -%>

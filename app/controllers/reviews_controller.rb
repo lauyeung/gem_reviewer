@@ -11,7 +11,9 @@ class ReviewsController < ApplicationController
         render "ruby_gems/show"
       end
     else
-     redirect_to ruby_gem_path([@ruby_gem]), notice: "Can't review same gem twice"
+      flash[:notice] = "Can't review same gem twice."
+      render 'ruby_gems/show'
+      # redirect_to ruby_gem_path([@ruby_gem]), notice: "Can't review same gem twice"
     end
   end
 
