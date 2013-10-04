@@ -18,6 +18,7 @@ class RubyGemsController < ApplicationController
   def show
     @ruby_gem = RubyGem.find(params[:id])
     @review = Review.new
+    @vote = Vote.new
   end
 
   def index
