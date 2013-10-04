@@ -2,28 +2,47 @@
 <html>
 <head>
   <title>GemReviewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "vendor/custom.modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><%= link_to 'View All Gems', ruby_gems_path %></li>
-      <%- if user_signed_in? -%>
-        <li><%= link_to "Edit Account", edit_user_registration_path(current_user) %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-        <li><%= image_tag current_user.avatar.thumb.url if current_user.avatar? %></li>
-      <%- else -%>
-        <li><%= link_to "Sign In", new_user_session_path %>
-        <li><%= link_to "Sign Up", new_user_registration_path %>
-      <%- end -%>
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1><a href="/">Gem Reviewer</a></h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
-  </nav>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
 
-<%= yield %>
+    <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <li><%= link_to 'View All Gems', ruby_gems_path %></li>
+      </ul>
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <%- if user_signed_in? -%>
+          <li><%= link_to "Edit Account", edit_user_registration_path(current_user) %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+          <li><%= image_tag current_user.avatar.thumb.url if current_user.avatar? %></li>
+        <%- else -%>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <%- end -%>
+      </ul>
+    </section>
+  </nav>
+
+  <div class="row">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
