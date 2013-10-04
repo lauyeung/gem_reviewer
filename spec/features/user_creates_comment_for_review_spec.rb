@@ -13,8 +13,10 @@ feature 'user creates a comment for a gem review', %Q{
   scenario "user adds a comment" do
     user_signs_in(user)
     visit ruby_gem_path(ruby_gem)
-    fill_in "comment_content", with: "I agree with this review!"
+    fill_in "Comment on this review:", with: "I agree with this review!"
+
     click_button "Save Comment"
+
     expect(page).to have_content("Comment saved!")
   end
 

@@ -1,20 +1,27 @@
-<%= @ruby_gem.name %>
+<h1><%= @ruby_gem.name %></h1>
 
-<p>
-  <strong>Reviews</strong><br>
-  <% @ruby_gem.reviews.each do |review| %>
+<p><strong>Reviews</strong><br>
+  <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
     <%= review.title %>
     <%= review.content %>
     <%= review.rating %>
+    <%- if user_signed_in? -%>
+      <%= simple_form_for [review, @comment] do |f| %>
+        <%= f.input :comment_content, label: "Comment on this review:" %>
+        <%= f.submit 'Save Comment' %>
+      <%- end -%>
+    <%- end -%>
   <%- end -%>
 </p>
 
-  <h1>Add New Gem Review</h1>
-
+<% unless @ruby_gem.reviewed_by?(current_user) %>
+<p><strong>Add New Gem Review</strong>
   <%= simple_form_for [@ruby_gem, @review] do |f| %>
     <%= f.input :title %>
     <%= f.input :content %>
     <%= f.input :rating, collection: 1..10 %>
     <%= f.submit 'Save' %>
   <%- end -%>
+</p>
+<% end %>
 
