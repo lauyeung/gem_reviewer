@@ -15,11 +15,15 @@ class RubyGemsController < ApplicationController
     end
   end
 
+  def show
+    @ruby_gem = RubyGem.find(params[:id])
+    @review = Review.new
+  end
+
   def index
     @q = RubyGem.search(params[:q])
     @ruby_gems = @q.result(distinct: true)
   end
-
 
   protected
 

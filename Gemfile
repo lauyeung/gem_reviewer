@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'pry-rails'
+  gem 'quiet_assets'
 end
 
 gem 'simple_form'
