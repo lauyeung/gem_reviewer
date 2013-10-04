@@ -9,7 +9,7 @@
   <%- end -%>
 </p>
 
-<%if @ruby_gem.reviews.where(user: current_user).empty? %>
+
 
   <h1>Add New Gem Review</h1>
 
@@ -19,4 +19,4 @@
     <%= f.input :rating, collection: 1..10 %>
     <%= f.submit 'Save' %>
   <%- end -%>
-<%- end -%>
+
