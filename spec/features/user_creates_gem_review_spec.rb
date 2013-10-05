@@ -82,7 +82,6 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
   scenario "non-authenticated user can not review gem" do
     gem_to_review = ruby_gem
     visit ruby_gems_path
-    save_and_open_page
     click_link gem_to_review.name
 
     expect(page).to_not have_content("Title")
