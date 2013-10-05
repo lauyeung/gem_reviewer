@@ -9,7 +9,7 @@ class RubyGemsController < ApplicationController
     @ruby_gem = RubyGem.new(ruby_gem_params)
 
     if @ruby_gem.save
-      redirect_to new_ruby_gem_path, notice: 'Gem successfully added!'
+      redirect_to new_ruby_gem_path, notice: 'Gem successfully saved!'
     else
       render :new
     end
@@ -18,6 +18,7 @@ class RubyGemsController < ApplicationController
   def show
     @ruby_gem = RubyGem.find(params[:id])
     @review = Review.new
+    @comment = Comment.new
   end
 
   def index
