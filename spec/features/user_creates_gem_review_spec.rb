@@ -79,6 +79,17 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     expect(page).to_not have_content("Rating")
   end
 
+  scenario "non-authenticated user can not review gem" do
+    gem_to_review = ruby_gem
+    visit ruby_gems_path
+    save_and_open_page
+    click_link gem_to_review.name
+
+    expect(page).to_not have_content("Title")
+    expect(page).to_not have_content("Content")
+    expect(page).to_not have_content("Rating")
+  end
+
   def user_signs_in(user)
     visit '/'
     click_link 'Sign In'
@@ -87,3 +98,4 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     click_button "Sign In"
   end
 end
+
