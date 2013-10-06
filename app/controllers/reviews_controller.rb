@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully saved!'
     else
       @comment = Comment.new
-      render template: 'ruby_gems/show'
+      render 'ruby_gems/show'
     end
 
   end
