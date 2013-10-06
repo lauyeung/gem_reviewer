@@ -4,12 +4,12 @@ GemReviewer::Application.routes.draw do
 
   root 'homes#index'
 
-  resources :ruby_gems do 
+  resources :ruby_gems do
     resources :reviews
   end
 
   resources :reviews do 
-    resources :votes 
+    resources :votes, :comments
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,4 +8,8 @@ class RubyGem < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, message: 'already exists'
 
+  def reviewed_by?(user)
+    reviews.pluck(:user_id).include?(user.id)
+  end
+
 end

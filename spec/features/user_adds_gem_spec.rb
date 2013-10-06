@@ -10,7 +10,7 @@ feature 'user adds gem', %Q{
   # ACCEPTANCE CRITERIA
   # * Added Gem must have a name
   # * An error message is received if information is invalid
-  # * A message is received if gem is successfully added
+  # * A message is received if gem is successfully saved
   # * An error message is received if gem already exists
   # * Need to be signed in to add gem
 
@@ -23,7 +23,7 @@ feature 'user adds gem', %Q{
     fill_in 'Name', with: 'Devise'
     click_button 'Add Gem'
     expect(RubyGem.count).to eql(prev_count + 1)
-    expect(page).to have_content('Gem successfully added!')
+    expect(page).to have_content('Gem successfully saved!')
   end
 
   scenario 'invalid information is provided' do

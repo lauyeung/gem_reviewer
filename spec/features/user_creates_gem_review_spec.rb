@@ -4,7 +4,7 @@ feature 'user creates a gem review', %Q{
   As a registered and logged-in user
   I want to add a review for a gem
   So that I can tell people what I think of that gem
-} do 
+} do
 
   # Acceptance Criteria
   # * I have to be signed in to write a review
@@ -29,22 +29,22 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     # expect(Review.count).to eql(prev_count + 1)
     # expect(page).to have_content("Home")
   end
-  
-  scenario 'user adds a review' do 
+
+  scenario 'user adds a review to a gem' do
     gem_to_review = ruby_gem
 
     user_signs_in(user)
     visit ruby_gems_path
     click_link gem_to_review.name
 
-    prev_count = ruby_gem.reviews.count 
+    prev_count = ruby_gem.reviews.count
     fill_in "Title", with: "Awesome gem"
     fill_in "Content", with: "Love this gem"
     select 10, from: "Rating"
 
     click_button "Save"
 
-    expect(page).to have_content("Review successfully added")
+    expect(page).to have_content("Review successfully saved")
     expect(ruby_gem.reviews.count).to eql(prev_count + 1)
   end
 
@@ -55,14 +55,14 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     visit ruby_gems_path
     click_link gem_to_review.name
 
-    prev_count = ruby_gem.reviews.count 
+    prev_count = ruby_gem.reviews.count
 
     click_button "Save"
     expect(page).to have_content("can't be blank")
     expect(ruby_gem.reviews.count).to eql(prev_count)
   end
 
-  scenario 'user tries to review same gem twice' do 
+  scenario 'user tries to review same gem twice' do
     gem_to_review = ruby_gem
 
     user_signs_in(user)
@@ -74,15 +74,19 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
 
     click_button "Save"
 
-    prev_count = ruby_gem.reviews.count
-    fill_in "Title", with: "Sweet2"
-    fill_in "Content", with: "Love this gem2"
-    select 7, from: "Rating"
+    expect(page).to_not have_content("Title")
+    expect(page).to_not have_content("Content")
+    expect(page).to_not have_content("Rating")
+  end
 
-    click_button "Save"
+  scenario "non-authenticated user can not review gem" do
+    gem_to_review = ruby_gem
+    visit ruby_gems_path
+    click_link gem_to_review.name
 
-    expect(ruby_gem.reviews.count).to eql(prev_count)
-    expect(page).to have_content("Can't review same gem twice")
+    expect(page).to_not have_content("Title")
+    expect(page).to_not have_content("Content")
+    expect(page).to_not have_content("Rating")
   end
 
   def user_signs_in(user)
@@ -93,3 +97,4 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     click_button "Sign In"
   end
 end
+
