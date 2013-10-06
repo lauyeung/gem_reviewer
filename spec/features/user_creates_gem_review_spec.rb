@@ -30,7 +30,7 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     # expect(page).to have_content("Home")
   end
 
-  scenario 'user adds a review' do
+  scenario 'user adds a review to a gem' do
     gem_to_review = ruby_gem
 
     user_signs_in(user)
@@ -73,6 +73,17 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     select 8, from: "Rating"
 
     click_button "Save"
+
+    expect(page).to_not have_content("Title")
+    expect(page).to_not have_content("Content")
+    expect(page).to_not have_content("Rating")
+  end
+
+  scenario "non-authenticated user cannot review a gem" do
+    gem_to_review = ruby_gem
+    visit ruby_gems_path
+    click_link gem_to_review.name
+    save_and_open_page
 
     expect(page).to_not have_content("Title")
     expect(page).to_not have_content("Content")
