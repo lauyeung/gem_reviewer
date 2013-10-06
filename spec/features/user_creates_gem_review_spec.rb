@@ -30,7 +30,7 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
     # expect(page).to have_content("Home")
   end
 
-  scenario 'user adds a review' do
+  scenario 'user adds a review to a gem' do
     gem_to_review = ruby_gem
 
     user_signs_in(user)

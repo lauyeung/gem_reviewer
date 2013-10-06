@@ -22,6 +22,11 @@ feature 'user creates a comment for a gem review', %Q{
 
 
   scenario "unauthorized user cannot add a comment" do
+    gem_to_review = ruby_gem
+    visit ruby_gems_path
+    click_link gem_to_review.name
+
+    expect(page).to_not have_content("Comment on this review:")
   end
 
 end
