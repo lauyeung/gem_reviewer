@@ -1,10 +1,13 @@
 <h1><%= @ruby_gem.name %></h1>
 
-<p><strong>Reviews</strong><br>
+<p><strong>Reviews</strong></p>
   <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
     <%= review.title %>
     <%= review.content %>
     <%= review.rating %>
+      <% review.comments.each do |comment| %>
+        <p class="comment"><%= comment.comment_content %></p>
+      <% end %>
     <%- if user_signed_in? -%>
       <%= simple_form_for [review, @comment] do |f| %>
         <%= f.input :comment_content, label: "Comment on this review:" %>
@@ -12,9 +15,8 @@
       <%- end -%>
     <%- end -%>
   <%- end -%>
-</p>
 
-<% unless @ruby_gem.reviewed_by?(current_user) %>
+<% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
 <p><strong>Add New Gem Review</strong>
   <%= simple_form_for [@ruby_gem, @review] do |f| %>
     <%= f.input :title %>
@@ -24,4 +26,3 @@
   <%- end -%>
 </p>
 <% end %>
-
