@@ -14,6 +14,23 @@ class ReviewsController < ApplicationController
 
   end
 
+  # def edit
+  #   @ruby_gem = RubyGem.find(params[:ruby_gem_id])
+  #   @review = Review.find(params[:id])
+  # end
+
+  def update
+    @ruby_gem = RubyGem.find(params[:ruby_gem_id])
+    @review = Review.find(params[:id])
+    @review.user = current_user
+    @comment = Comment.new
+    if @review.update(review_params)
+      redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully updated!'
+    else
+      render template: 'ruby_gems/show'
+    end
+  end
+
   private
   def review_params
     params.require(:review).permit(:title, :content, :rating)
