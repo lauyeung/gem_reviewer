@@ -8,14 +8,21 @@ class Review < ActiveRecord::Base
   has_many :comments,
     inverse_of: :review
 
+  has_many :votes, as: :voteable
+    #inverse relationship not required
+
   validates_presence_of :title
   validates_presence_of :rating
   validates_presence_of :content
   validates_presence_of :user
   validates_presence_of :ruby_gem
 
-  validates_uniqueness_of :ruby_gem_id, scope: :user_id
-
   validates_numericality_of :rating
   validates_inclusion_of :rating, :in => 1..10
+
+  validates_uniqueness_of :ruby_gem_id, scope: :user_id
+
+  def total_score
+    votes.pluck(:score).inject(:+)
+  end
 end

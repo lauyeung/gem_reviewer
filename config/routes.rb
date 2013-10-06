@@ -8,8 +8,8 @@ GemReviewer::Application.routes.draw do
     resources :reviews
   end
 
-  resources :reviews do
-    resources :comments
+  resources :reviews do 
+    resources :votes, :comments
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

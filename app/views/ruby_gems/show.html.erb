@@ -2,6 +2,21 @@
 
 <p><strong>Reviews</strong></p>
   <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
+    
+    <%= simple_form_for [review, @vote ] do |f| %>
+      <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+      <button type="submit">
+        <i class="icon-thumbs-up"></i>
+      </button>
+    <%- end -%>
+     <%= "Current score is: #{review.total_score}" %>
+    <%= simple_form_for [review, @vote ] do |f| %>
+      <%= f.input :score, as: :hidden, input_html: {value: -1} %>
+       <button type="submit">
+          <i class="icon-thumbs-down"></i>
+        </button>
+    <%- end -%>
+
     <%= review.title %><br>
     <%= review.content %><br>
     Score: <%= review.rating %><br>
