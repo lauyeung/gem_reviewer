@@ -9,22 +9,23 @@ feature "User edits their review", %Q{
 # * Only the author of a review can edit a review
 # * non-authors will not see a link to edit
 
-  # let(:review) { FactoryGirl.create(:review) }
+  let(:review) { FactoryGirl.create(:review) }
   # let(:ruby_gem) { review.ruby_gem }
   # let(:user) { review.user }
 
   scenario "author successfully edits review" do
-    review = FactoryGirl.create(:review)
-    ruby_gem = review.ruby_gem
-    user = review.user
+    new_review = review
+    ruby_gem = new_review.ruby_gem
+    user = new_review.user
     user_signs_in(user)
     visit ruby_gem_path(ruby_gem)
     expect(page).to have_content(review.content)
     fill_in "Title", with: "Terrible"
     fill_in "Content", with: "Love this gem"
     select 10, from: "Rating"
+
     click_button "Update"
-    save_and_open_page
+
     expect(page).to have_content("Love this gem")
   end
 

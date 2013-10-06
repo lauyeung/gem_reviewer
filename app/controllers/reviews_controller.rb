@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
       redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully saved!'
     else
       @comment = Comment.new
+      @vote = Vote.new
       render 'ruby_gems/show'
     end
 
@@ -23,11 +24,13 @@ class ReviewsController < ApplicationController
     @ruby_gem = RubyGem.find(params[:ruby_gem_id])
     @review = Review.find(params[:id])
     @review.user = current_user
-    @comment = Comment.new
+
     if @review.update(review_params)
       redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully updated!'
     else
-      render template: 'ruby_gems/show'
+      @comment = Comment.new
+      @vote = Vote.new
+      render 'ruby_gems/show'
     end
   end
 
