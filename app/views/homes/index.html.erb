@@ -1,9 +1,8 @@
-<% if user_signed_in? %>
-  <h1>Welcome back to Gem Reviewer!</h1>
-  <%= link_to "View All Gems", ruby_gems_path, class: 'button' %>
-  <%= link_to 'Add New Gem', new_ruby_gem_path, class: 'button' %>
-<% else %>
-  <div class= "small-10 large-centered columns">
+  <% if user_signed_in? %>
+    <h1>Welcome back to Gem Reviewer!</h1>
+    <%= link_to "View All Gems", ruby_gems_path, class: "button" %>
+    <%= link_to 'Add New Gem', new_ruby_gem_path, class: "button" %>
+  <% else %>
     <h1>Welcome to Gem Reviewer!</h1>
     <ul>
       <li>Discover new gems</li>
@@ -12,9 +11,7 @@
       <li>Share your own reviews and thoughts</li>
     </ul>
     <p>Get started today!</p>
-    <div>
-      <%= link_to "Sign up", new_user_registration_path, class: 'button' %><br>
-      <%= link_to "Sign in", new_user_session_path %>
-    </div>
-  </div>
-<% end %>
+
+    <%= link_to "Sign up", new_user_registration_path, class: "button" %><br>
+    <%= link_to "Sign in", new_user_session_path, class: "button secondary" %>
+  <% end %>

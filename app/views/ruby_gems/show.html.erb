@@ -1,6 +1,7 @@
 <h1><%= @ruby_gem.name %></h1>
 
 <h3>Reviews</strong></h3>
+
 <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
   <div class= "row">
     <%- if current_user != nil -%>
@@ -52,7 +53,15 @@
       <%= f.submit 'Save Comment', class: 'small button' %>
     <%- end -%>
   <%- end -%>
+
+
+  <br>
 <%- end -%>
+
+
+
+
+
 
 <% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
   <p><strong>Add New Gem Review</strong>
