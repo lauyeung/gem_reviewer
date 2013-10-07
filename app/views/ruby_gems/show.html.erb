@@ -3,14 +3,15 @@
 <p><strong>Reviews</strong></p>
 <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
   <strong>Current Vote Score: </strong><%= review.total_score %>
-  <%- if current_user != nil -%>
-    <%= simple_form_for [review, @vote ] do |f| %>
+  <%- if current_user != nil -%> 
+    <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
       <%= f.input :score, as: :hidden, input_html: {value: 1} %>
       <button type="submit">
-        <i class="icon-thumbs-up"></i>
+        <i class="icon-thumbs-up">I Like This</i>
       </button>
     <%- end -%>
-    <%= simple_form_for [review, @vote ] do |f| %>
+
+    <%= simple_form_for [review, @vote ], html: {class: "downvote"} do |f| %>
       <%= f.input :score, as: :hidden, input_html: {value: -1} %>
        <button type="submit">
           <i class="icon-thumbs-down"></i>

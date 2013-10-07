@@ -13,6 +13,24 @@ class VotesController < ApplicationController
     end
   end
 
+  # def update
+  #   @ruby_gem = RubyGem.find(params[:ruby_gem_id])
+  #   @vote = @ruby_gem.votes.build(vote_params)
+  #   @vote.user = current_user
+  #   @vote.voteable_id = @ruby_gem._id
+  #   @vote.voteable_type = @ruby_gem.class
+    
+    # if @vote.votable_type.voted_by(current_user)
+    #   if @review.update(review_params)
+    #     redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully updated!'
+    #   else
+    #     @comment = Comment.new
+    #     @vote = Vote.new
+    #     render 'ruby_gems/show'
+    #   end
+    # end
+  # end
+
   protected
   def load_voteable
       #add Comment after 'Review'
