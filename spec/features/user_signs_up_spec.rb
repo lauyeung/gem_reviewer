@@ -25,7 +25,6 @@ So I may enter my votes and reviews for gems
     fill_in("Password confirmation", with: '12345678', :match => :prefer_exact)
     attach_file('Avatar', File.join(Rails.root, '/spec/support/stock.jpg'))
     click_button "Sign up"
-    #binding.pry
     expect(User.last.avatar.current_path).to_not be_nil
     expect(page).to have_content("You're in!")
     expect(page).to have_content("Sign Out")
