@@ -22,7 +22,7 @@ feature "user votes review up or down", %Q{
     visit ruby_gems_path
     click_link ruby_gem.name
 
-    click_button('.icon-thumbs-up')
+    page.find('.icon-thumbs-up').click
     save_and_open_page
     expect(ruby_gem.reviews.first.votes.count).to eql(1)
     expect(Vote.count).to eql(prev_count + 1)

@@ -36,7 +36,7 @@
       Score: <%= review.rating %><br>
     <%- end -%>
 
-    <% review.comments.reject{|comment|comment.id.nil?}.each do |comment|  %>
+    <% review.comments.each do |comment|  %>
       <strong>Start of Comments</strong>
       <p class="comment"><%= comment.comment_content %></p>
     <% end %>
