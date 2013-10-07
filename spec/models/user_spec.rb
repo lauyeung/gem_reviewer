@@ -7,6 +7,9 @@ describe User do
   it { should have_valid(:password).when("password", "12345678")}
   it { should_not have_valid(:password).when(nil, "", "the") }
 
+  it {should have_valid(:username).when("username", "USERNAME")}
+  it {should_not have_valid(:username).when(nil, "")}
+
   it "should have matching password and password confirmations" do
     user = User.new
     user.password = "password"

@@ -4,7 +4,7 @@ feature 'a user can only vote on a review once', %Q{
   As a registered and logged-in user
   I want to upvote/downvote reviews
   So that I can indicate which reviews I like/dislike
-} do 
+} do
 
   # Acceptance Criteria
   # * I can upvote or downvote a reviews
@@ -24,21 +24,21 @@ feature 'a user can only vote on a review once', %Q{
     visit ruby_gems_path
     click_link ruby_gem.name
 
-    within('.upvote') do 
-      page.find('button').click 
+    within('.upvote') do
+      page.find('button').click
     end
-    within('.upvote') do 
-      page.find('button').click 
+    within('.upvote') do
+      page.find('button').click
     end
-    
+
     expect(page).to have_content("Vote was not successfully saved.")
     expect(page).to_not have_content("Thank you for voting!")
-  end 
+  end
 
 def user_signs_in(user)
     visit '/'
     click_link 'Sign In'
-    fill_in "Email", with: user.email
+    fill_in "Login", with: user.email
     fill_in "Password", with: user.password
     click_button "Sign In"
   end

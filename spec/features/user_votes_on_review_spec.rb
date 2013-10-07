@@ -22,8 +22,8 @@ feature "user votes review up or down", %Q{
     user_signs_in(user)
     visit ruby_gems_path
     click_link ruby_gem.name
-    within('.upvote') do 
-      page.find('button').click 
+    within('.upvote') do
+      page.find('button').click
     end
 
     expect(ruby_gem.reviews.first.votes.count).to eql(1)
@@ -43,7 +43,7 @@ feature "user votes review up or down", %Q{
  def user_signs_in(user)
     visit '/'
     click_link 'Sign In'
-    fill_in "Email", with: user.email
+    fill_in "Login", with: user.email
     fill_in "Password", with: user.password
     click_button "Sign In"
   end

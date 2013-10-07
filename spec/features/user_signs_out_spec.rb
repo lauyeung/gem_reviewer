@@ -4,17 +4,17 @@ feature 'user signs out of account', %Q{
   As an authenticated user
   I want to sign out
   So I can protect my account from other individuals
-} do 
+} do
 
   # Acceptance Citeria
   # * The page confirms that I've logged out
   # * I have access to log back in
 
-  scenario 'user signs out of account' do 
+  scenario 'user signs out of account' do
     user = FactoryGirl.create(:user)
 
     visit user_session_path
-    fill_in "Email", with: user.email 
+    fill_in "Login", with: user.username
     fill_in "Password", with: user.password
     click_button "Sign In"
     click_link "Sign Out"

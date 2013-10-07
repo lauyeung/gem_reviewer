@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  validates_presence_of :username
   validates :username,
-  :uniqueness => {
-    :case_sensitive => false
-  }
+  uniqueness: true
+
   def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)

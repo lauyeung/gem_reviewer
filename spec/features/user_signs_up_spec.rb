@@ -20,6 +20,7 @@ So I may enter my votes and reviews for gems
     prev_count = User.count
     visit root_path
     click_link "Sign Up"
+    fill_in "Username", with: "Username"
     fill_in "Email", with: "user@example.com"
     fill_in("Password", with: '12345678', :match => :prefer_exact)
     fill_in("Password confirmation", with: '12345678', :match => :prefer_exact)
@@ -46,6 +47,7 @@ So I may enter my votes and reviews for gems
     prev_count = User.count
     visit root_path
     click_link "Sign Up"
+    fill_in "Username", with: "Username"
     fill_in "Email", with: "user@example.com"
     fill_in("Password", with: '12345678', :match => :prefer_exact)
     fill_in("Password confirmation", with: 'password', :match => :prefer_exact)
