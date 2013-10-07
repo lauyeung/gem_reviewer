@@ -2,34 +2,29 @@
 
 <p><strong>Reviews</strong></p>
 <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
-   <div class= "row">
+  <div class= "row">
     <p><strong>Current Vote Score: </strong><%= review.total_score %></p>
     <%- if current_user != nil -%>
-
-      <div class= "votes large-2 columns"</div>
-        <%= simple_form_for [review, @vote ] do |f| %>
-        <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-        <button type="submit">
-          <i class="icon-thumbs-up"></i>
-        </button>
-      <%- end -%>
-      <%= simple_form_for [review, @vote ] do |f| %>
-        <%= f.input :score, as: :hidden, input_html: {value: -1} %>
-         <button type="submit">
-            <i class="icon-thumbs-down"></i>
+      <div class= "votes large-1 columns">
+        <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
+          <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+          <button type="submit">
+            <i class="icon-thumbs-up"></i>
+          </button>
+        <%- end -%>
+        <%= simple_form_for [review, @vote ], html: {class: "downvote"} do |f| %>
+          <%= f.input :score, as: :hidden, input_html: {value: -1} %>
+           <button type="submit">
+              <i class="icon-thumbs-down"></i>
           </button>
         <%- end -%>
       </div>
-
     <%- end -%>
-      <div class="reviews large-10 columns">
-
+    <div class="reviews large-11 columns">
       <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %></p>
       <p><%= simple_format(review.content) %></p>
-
-
-      </div>
     </div>
+  </div>
     <%- if review.user == current_user -%>
     <div class="review-update">
       <p><strong>Update or
@@ -41,10 +36,10 @@
       <%= f.input :rating, collection: 1..10 %>
       <%= f.submit 'Update' %>
       <%- end -%>
-   </div>
+    </div>
     <%- end -%>
 
-  <p><strong>Start of Comments:</strong></p>
+  <strong>Start of Comments:</strong>
   <% review.comments.each do |comment|  %>
     <p class="comment"><%= comment.comment_content %></p>
   <% end %>
