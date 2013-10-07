@@ -17,7 +17,7 @@ class RubyGemsController < ApplicationController
 
   def show
     @ruby_gem = RubyGem.find(params[:id])
-    binding.pry
+    @reviews = @ruby_gem.reviews.reject{|review|review.id.nil?}.sort_by { |review| -review.total_score }
     @review = Review.new
     @vote = Vote.new
     @comment = Comment.new
