@@ -7,11 +7,7 @@
       <div class= "votes large-1 columns">
         <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-<<<<<<< HEAD
           <button type="submit" class="small button success round">
-=======
-          <button id="thumbs" type="submit">
->>>>>>> master
             <i class="icon-thumbs-up"></i>
           </button>
         <%- end -%>
