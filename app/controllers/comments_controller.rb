@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to ruby_gem_path([@ruby_gem]), notice: 'Comment saved!'
     else
+      @vote = Vote.new
       render 'ruby_gems/show'
     end
   end

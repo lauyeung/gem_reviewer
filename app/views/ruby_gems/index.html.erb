@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-      <% @ruby_gems.each do |ruby_gem| %>
+      <% @ruby_gems.order("name").each do |ruby_gem| %>
         <tr>
           <td><%=link_to ruby_gem.name, ruby_gem_path(ruby_gem) %></td>
         </tr>

@@ -1,14 +1,14 @@
 class VotesController < ApplicationController
   before_action :load_voteable
-  
+
   def create
     @vote = @voteable.votes.new(vote_params)
     @vote.user = current_user
-    if @vote.save 
+    if @vote.save
       flash[:notice]= "Thank you for voting!"
       redirect_to ruby_gem_path(@voteable.ruby_gem)
     else
-      flash[:notice]= "Vote was not successfully saved. Please keep in mind you can only vote once."
+      flash[:notice]= "You have already voted for this review!"
       redirect_to ruby_gem_path(@voteable.ruby_gem)
     end
   end
@@ -19,7 +19,7 @@ class VotesController < ApplicationController
   #   @vote.user = current_user
   #   @vote.voteable_id = @ruby_gem._id
   #   @vote.voteable_type = @ruby_gem.class
-    
+
     # if @vote.votable_type.voted_by(current_user)
     #   if @review.update(review_params)
     #     redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully updated!'
