@@ -7,7 +7,11 @@
       <div class= "votes large-1 columns">
         <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+<<<<<<< HEAD
           <button type="submit" class="small button success round">
+=======
+          <button id="thumbs" type="submit">
+>>>>>>> master
             <i class="icon-thumbs-up"></i>
           </button>
         <%- end -%>
@@ -20,24 +24,27 @@
         <%- end -%>
       </div>
     <%- end -%>
+
     <div class="reviews large-11 columns">
       <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %></p>
       <p><%= simple_format(review.content) %></p>
     </div>
   </div>
-    <%- if review.user == current_user -%>
+
+  <%- if review.user == current_user -%>
     <div class="review-update">
-      <p><strong>Update or
-      <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %>
-      your existing Review </strong></p>
-      <%= simple_form_for [@ruby_gem, review] do |f| %>
-      <%= f.input :title %>
-      <%= f.input :content %>
-      <%= f.input :rating, collection: 1..10 %>
-      <%= f.submit 'Update' %>
-      <%- end -%>
+      <p><strong><a href="#" id="update">Update</a> or
+      <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %> your existing review </strong></p>
+      <div id="review_form" class="hidden_review_form">
+        <%= simple_form_for [@ruby_gem, review] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :content %>
+        <%= f.input :rating, collection: 1..10 %>
+        <%= f.submit 'Update' %>
+        <%- end -%>
+      </div>
     </div>
-    <%- end -%>
+  <%- end -%>
 
   <strong>Start of Comments:</strong>
   <% review.comments.each do |comment|  %>
