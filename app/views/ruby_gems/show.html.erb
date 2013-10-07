@@ -3,7 +3,9 @@
 <p><strong>Reviews</strong></p>
   <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
     <%- if review.user == current_user -%>
-      <strong>Update your existing Review</strong>
+      <strong>Update or
+        <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %>
+        your existing Review </strong>
       <div>
         <%= simple_form_for [@ruby_gem, review] do |f| %>
         <%= f.input :title %>
