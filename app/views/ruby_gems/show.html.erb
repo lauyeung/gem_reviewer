@@ -14,6 +14,19 @@
         <%= f.submit 'Update' %>
         <%- end -%>
       </div>
+      <%= simple_form_for [review, @vote ] do |f| %>
+          <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+          <button type="submit">
+            <i class="icon-thumbs-up"></i>
+          </button>
+        <%- end -%>
+         <%= "Current score is: #{review.total_score}" %>
+        <%= simple_form_for [review, @vote ] do |f| %>
+          <%= f.input :score, as: :hidden, input_html: {value: -1} %>
+           <button type="submit">
+              <i class="icon-thumbs-down"></i>
+            </button>
+      <%- end -%>
     <%- else -%>
       <%- if current_user != nil -%>
         <%= simple_form_for [review, @vote ] do |f| %>
