@@ -1,9 +1,8 @@
 <h1><%= @ruby_gem.name %></h1>
 
-<p><strong>Reviews</strong></p>
+<h3>Reviews</strong></h3>
 <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
   <div class= "row">
-    <p><strong>Current Vote Score: </strong><%= review.total_score %></p>
     <%- if current_user != nil -%>
       <div class= "votes large-1 columns">
         <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
@@ -12,6 +11,7 @@
             <i class="icon-thumbs-up"></i>
           </button>
         <%- end -%>
+        <span class="review_score"><%= review.total_score %></span>
         <%= simple_form_for [review, @vote ], html: {class: "downvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: -1} %>
            <button type="submit" class="small button alert round">
