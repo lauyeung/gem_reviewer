@@ -17,7 +17,6 @@ class RubyGemsController < ApplicationController
 
   def show
     @ruby_gem = RubyGem.find(params[:id])
-    binding.pry
     @review = Review.new
     @vote = Vote.new
     @comment = Comment.new
