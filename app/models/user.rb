@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :comments,
     inverse_of: :user
 
+  has_many :votes,
+    inverse_of: :user
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

@@ -3,11 +3,12 @@ class VotesController < ApplicationController
   
   def create
     @vote = @voteable.votes.new(vote_params)
+    @vote.user = current_user
     if @vote.save 
-      flash[:notice]= "Thank you for voting: #{@vote.score}!"
+      flash[:notice]= "Thank you for voting!"
       redirect_to ruby_gem_path(@voteable.ruby_gem)
     else
-      flash[:notice]= "Vote was not successfully saved. Please try again."
+      flash[:notice]= "Vote was not successfully saved. Please keep in mind you can only vote once."
       redirect_to ruby_gem_path(@voteable.ruby_gem)
     end
   end
