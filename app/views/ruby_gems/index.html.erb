@@ -1,7 +1,7 @@
 <%= search_form_for @q do |f| %>
   <%= f.label :name_cont %>
   <%= f.text_field :name_cont %>
-  <%= f.submit 'Search' %>
+  <%= f.submit 'Search', class: 'small button' %>
 <% end %>
 
   <!-- Table -->
@@ -24,4 +24,4 @@
   </table>
 
 <br>
-<%= link_to 'Add New Gem', new_ruby_gem_path %>
+<%= link_to 'Add New Gem', new_ruby_gem_path, class: 'button' %>
