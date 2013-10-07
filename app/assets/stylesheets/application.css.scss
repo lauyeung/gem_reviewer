@@ -28,7 +28,14 @@ p.comment {
   text-align: left;
 }
 
+.small, .upvote {
+  margin: 0px;
+}
+
+.votes {
+  text-align: center;
+}
+
 div.hidden_review_form {
     display:none;
 }
-
