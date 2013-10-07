@@ -74,9 +74,7 @@ let(:ruby_gem) {FactoryGirl.create(:ruby_gem)}
 
     click_button "Save"
 
-    expect(page).to_not have_content("Title")
-    expect(page).to_not have_content("Content")
-    expect(page).to_not have_content("Rating")
+    expect(page).to_not have_content("Add New Gem Review")
   end
 
   scenario "non-authenticated user can not review gem" do
