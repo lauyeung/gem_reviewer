@@ -8,13 +8,13 @@
       <div class= "votes large-1 columns">
         <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-          <button type="submit" class="tiny success round">
+          <button type="submit" class="small button success round">
             <i class="icon-thumbs-up"></i>
           </button>
         <%- end -%>
         <%= simple_form_for [review, @vote ], html: {class: "downvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: -1} %>
-           <button type="submit" class="tiny alert round">
+           <button type="submit" class="small button alert round">
               <i class="icon-thumbs-down"></i>
           </button>
         <%- end -%>
