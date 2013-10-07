@@ -24,7 +24,6 @@ class ReviewsController < ApplicationController
     @ruby_gem = RubyGem.find(params[:ruby_gem_id])
     @review = Review.find(params[:id])
     @review.user = current_user
-
     if @review.update(review_params)
       redirect_to ruby_gem_path(@ruby_gem), notice: 'Review successfully updated!'
     else
