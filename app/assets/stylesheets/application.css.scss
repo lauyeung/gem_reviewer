@@ -15,6 +15,15 @@
  *= require foundation_and_overrides
  */
 
+#nav-avatar-container {
+  height: 45px;
+  width: 45px;
+}
+
+img.avatar {
+  margin-top: 5px;
+}
+
 p.comment {
   margin: 0 20px;
 }
