@@ -2,39 +2,47 @@
 
 <p><strong>Reviews</strong></p>
 <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
-  <strong>Current Vote Score: </strong><%= review.total_score %>
-  <%- if current_user != nil -%>
-    <%= simple_form_for [review, @vote ] do |f| %>
-      <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-      <button type="submit">
-        <i class="icon-thumbs-up"></i>
-      </button>
-    <%- end -%>
-    <%= simple_form_for [review, @vote ] do |f| %>
-      <%= f.input :score, as: :hidden, input_html: {value: -1} %>
-       <button type="submit">
-          <i class="icon-thumbs-down"></i>
+   <div class= "row">
+    <p><strong>Current Vote Score: </strong><%= review.total_score %></p>
+    <%- if current_user != nil -%>
+
+      <div class= "votes large-2 columns"</div>
+        <%= simple_form_for [review, @vote ] do |f| %>
+        <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+        <button type="submit">
+          <i class="icon-thumbs-up"></i>
         </button>
       <%- end -%>
-  <%- end -%>
-  <p>
-    <%= review.title %><br>
-    <%= review.content %><br>
-    <strong>Rating: </strong><%= review.rating %><br>
-  </p>
-  <%- if review.user == current_user -%>
-    <strong>Update or
+      <%= simple_form_for [review, @vote ] do |f| %>
+        <%= f.input :score, as: :hidden, input_html: {value: -1} %>
+         <button type="submit">
+            <i class="icon-thumbs-down"></i>
+          </button>
+        <%- end -%>
+      </div>
+
+    <%- end -%>
+      <div class="reviews large-10 columns">
+
+      <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %></p>
+      <p><%= simple_format(review.content) %></p>
+
+
+      </div>
+    </div>
+    <%- if review.user == current_user -%>
+    <div class="review-update">
+      <p><strong>Update or
       <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %>
-      your existing Review </strong>
-    <div>
+      your existing Review </strong></p>
       <%= simple_form_for [@ruby_gem, review] do |f| %>
       <%= f.input :title %>
       <%= f.input :content %>
       <%= f.input :rating, collection: 1..10 %>
       <%= f.submit 'Update' %>
       <%- end -%>
-    </div>
-  <%- end -%>
+   </div>
+    <%- end -%>
 
   <strong>Start of Comments:</strong>
   <% review.comments.each do |comment|  %>
@@ -58,3 +66,5 @@
     <%- end -%>
   </p>
 <% end %>
+
+
