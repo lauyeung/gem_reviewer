@@ -1,65 +1,52 @@
 <h1><%= @ruby_gem.name %></h1>
 
 <p><strong>Reviews</strong></p>
-  <% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
-    <%- if review.user == current_user -%>
-      <strong>Update or
-        <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %>
-        your existing Review </strong>
-      <div>
-        <%= simple_form_for [@ruby_gem, review] do |f| %>
-        <%= f.input :title %>
-        <%= f.input :content %>
-        <%= f.input :rating, collection: 1..10 %>
-        <%= f.submit 'Update' %>
-        <%- end -%>
-      </div>
-      <%= simple_form_for [review, @vote ] do |f| %>
-          <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-          <button type="submit">
-            <i class="icon-thumbs-up"></i>
-          </button>
-        <%- end -%>
-         <%= "Current score is: #{review.total_score}" %>
-        <%= simple_form_for [review, @vote ] do |f| %>
-          <%= f.input :score, as: :hidden, input_html: {value: -1} %>
-           <button type="submit">
-              <i class="icon-thumbs-down"></i>
-            </button>
-      <%- end -%>
-    <%- else -%>
-      <%- if current_user != nil -%>
-        <%= simple_form_for [review, @vote ] do |f| %>
-          <%= f.input :score, as: :hidden, input_html: {value: 1} %>
-          <button type="submit">
-            <i class="icon-thumbs-up"></i>
-          </button>
-        <%- end -%>
-         <%= "Current score is: #{review.total_score}" %>
-        <%= simple_form_for [review, @vote ] do |f| %>
-          <%= f.input :score, as: :hidden, input_html: {value: -1} %>
-           <button type="submit">
-              <i class="icon-thumbs-down"></i>
-            </button>
-          <%- end -%>
-      <%- end -%>
-
-      <%= review.title %><br>
-      <%= review.content %><br>
-      Score: <%= review.rating %><br>
+<% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
+  <strong>Current Vote Score: </strong><%= review.total_score %>
+  <%- if current_user != nil -%>
+    <%= simple_form_for [review, @vote ] do |f| %>
+      <%= f.input :score, as: :hidden, input_html: {value: 1} %>
+      <button type="submit">
+        <i class="icon-thumbs-up"></i>
+      </button>
     <%- end -%>
-
-    <% review.comments.each do |comment|  %>
-      <strong>Start of Comments</strong>
-      <p class="comment"><%= comment.comment_content %></p>
-    <% end %>
-    <%- if user_signed_in? -%>
-      <%= simple_form_for [review, @comment] do |f| %>
-        <%= f.input :comment_content, label: "Comment on this review:" %>
-        <%= f.submit 'Save Comment' %>
+    <%= simple_form_for [review, @vote ] do |f| %>
+      <%= f.input :score, as: :hidden, input_html: {value: -1} %>
+       <button type="submit">
+          <i class="icon-thumbs-down"></i>
+        </button>
       <%- end -%>
+  <%- end -%>
+  <p>
+    <%= review.title %><br>
+    <%= review.content %><br>
+    <strong>Rating: </strong><%= review.rating %><br>
+  </p>
+  <%- if review.user == current_user -%>
+    <strong>Update or
+      <%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' } %>
+      your existing Review </strong>
+    <div>
+      <%= simple_form_for [@ruby_gem, review] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: 1..10 %>
+      <%= f.submit 'Update' %>
+      <%- end -%>
+    </div>
+  <%- end -%>
+
+  <strong>Start of Comments:</strong>
+  <% review.comments.each do |comment|  %>
+    <p class="comment"><%= comment.comment_content %></p>
+  <% end %>
+  <%- if user_signed_in? -%>
+    <%= simple_form_for [review, @comment] do |f| %>
+      <%= f.input :comment_content, label: "Comment on this review:" %>
+      <%= f.submit 'Save Comment' %>
     <%- end -%>
   <%- end -%>
+<%- end -%>
 
 <% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
   <p><strong>Add New Gem Review</strong>
