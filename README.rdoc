@@ -14,7 +14,7 @@ Some technical info!
 * Database: PostgreSQL
 * Testing: Rspec, Capybara
 
-Contributers:
+Collaborators:
 * Alex Phinzy (github[https://github.com/Aphin715])
 * Louise Au Yeung (github[https://github.com/lauyeung])
 * Stephanie Viccari (github[https://github.com/SViccari])
