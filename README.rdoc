@@ -1,6 +1,6 @@
 == Gem Reviewer
 
-Gem Reviewer is a review site for Ruby Gems.
+Gem Reviewer is a review site for Ruby Gems. Available at http://gem-reviewer.herokuapp.com/
 
 With Gem Reviewer, you can:
 * Submit a gem to review
