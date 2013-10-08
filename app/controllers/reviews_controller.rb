@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
       else
         @comment = Comment.new
         @vote = Vote.new
-        @reviews = @ruby_gem.reviews.sort_by { |review| "review.total_score DESC" }.reject{|review|review.id.nil?}
+        @reviews = @ruby_gem.review_sort
         render 'ruby_gems/show'
       end
     end

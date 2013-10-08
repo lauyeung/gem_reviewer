@@ -12,4 +12,7 @@ class RubyGem < ActiveRecord::Base
     reviews.pluck(:user_id).include?(user.id)
   end
 
+  def review_sort
+    reviews.sort_by{ |review| "review.total_score DESC" }.reject{|review|review.id.nil?}
+  end
 end
