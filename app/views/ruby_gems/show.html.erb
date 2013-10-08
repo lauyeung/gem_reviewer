@@ -26,6 +26,20 @@
           </button>
         <%- end -%>
       </div>
+    <%- else -%>
+      <div class= "center large-1 columns">
+        <a href="/users/sign_up"><button type="submit" class="small button success round icon-thumbs-up">
+        </button></a>
+        <span class="review_score">
+          <%- if review.total_score != nil -%>
+            <%= review.total_score %>
+          <%- else -%>
+            0
+          <%- end -%>
+        </span>
+        <a href="/users/sign_up"><button type="submit" class="small button alert round icon-thumbs-down">
+        </button></a>
+      </div>
     <%- end -%>
 
     <div class="reviews large-11 columns">
@@ -72,20 +86,8 @@
   <br>
 <%- end -%>
 
-
-
-
-
-
 <% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
-  <p><strong>Add New Gem Review</strong>
-    <%= simple_form_for [@ruby_gem, @review] do |f| %>
-      <%= f.input :title %>
-      <%= f.input :content %>
-      <%= f.input :rating, collection: 1..10 %>
-      <%= f.submit 'Save Review', class: 'small button' %>
-    <%- end -%>
-  </p>
+  <%= render 'review_form' %>
 <% end %>
 
 
