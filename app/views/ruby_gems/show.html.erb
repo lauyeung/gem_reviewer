@@ -49,6 +49,7 @@
   <%- if user_signed_in? -%>
     <%= simple_form_for [review, @comment] do |f| %>
       <%= f.input :comment_content, label: "Comment on this review:" %>
+      <%= current_user.username %>
       <%= f.submit 'Save Comment' %>
     <%- end -%>
   <%- end -%>
