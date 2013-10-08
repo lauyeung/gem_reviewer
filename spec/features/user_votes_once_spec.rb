@@ -31,7 +31,7 @@ feature 'a user can only vote on a review once', %Q{
       page.find('button').click
     end
 
-    expect(page).to have_content("Vote was not successfully saved.")
+    expect(page).to have_content("You have already voted")
     expect(page).to_not have_content("Thank you for voting!")
   end
 

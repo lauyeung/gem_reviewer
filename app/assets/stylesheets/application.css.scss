@@ -28,11 +28,6 @@ p.comment {
   margin: 0 20px;
 }
 
-.votes {
-  text-align: left;
-
-}
-
 .reviews {
   text-align: left;
 }
@@ -41,10 +36,15 @@ p.comment {
   margin: 0px;
 }
 
-.votes {
+.center {
   text-align: center;
 }
 
 div.hidden_review_form {
     display:none;
+}
+
+.comment-user {
+  font-size: 0.8em;
+  background-color: #F2E5B3;
 }

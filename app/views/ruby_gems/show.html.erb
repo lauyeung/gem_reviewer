@@ -1,10 +1,11 @@
 <h1><%= @ruby_gem.name %></h1>
 
-<h3>Reviews</strong></h3>
-<% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
+<h3>Reviews</h3>
+
+<% @reviews.each do |review| %>
   <div class= "row">
     <%- if current_user != nil -%>
-      <div class= "votes large-1 columns">
+      <div class= "center large-1 columns">
         <%= simple_form_for [review, @vote ], html: {class: "upvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: 1} %>
           <button type="submit" class="small button success round">
@@ -22,7 +23,8 @@
     <%- end -%>
 
     <div class="reviews large-11 columns">
-      <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %></p>
+      <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %> |
+      <strong>By: </strong><%= review.user.username %>
       <p><%= simple_format(review.content) %></p>
     </div>
   </div>
@@ -44,16 +46,23 @@
 
   <strong>Start of Comments:</strong>
   <% review.comments.each do |comment|  %>
-    <p class="comment"><%= comment.comment_content %></p>
+    <p class="comment"><%= comment.comment_content %> -- <span class="comment-user"><%= comment.user.username %></span></p>
   <% end %>
   <%- if user_signed_in? -%>
     <%= simple_form_for [review, @comment] do |f| %>
       <%= f.input :comment_content, label: "Comment on this review:" %>
-      <%= current_user.username %>
-      <%= f.submit 'Save Comment' %>
+      <%= f.submit 'Save Comment', class: 'small button' %>
     <%- end -%>
   <%- end -%>
+
+
+  <br>
 <%- end -%>
+
+
+
+
+
 
 <% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
   <p><strong>Add New Gem Review</strong>
@@ -61,7 +70,7 @@
       <%= f.input :title %>
       <%= f.input :content %>
       <%= f.input :rating, collection: 1..10 %>
-      <%= f.submit 'Save' %>
+      <%= f.submit 'Save Review', class: 'small button' %>
     <%- end -%>
   </p>
 <% end %>
