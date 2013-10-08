@@ -3,10 +3,10 @@
 Gem Reviewer (http://gem-reviewer.herokuapp.com) is a review site for Ruby Gems.
 
 With Gem Reviewer, you can:
-* Submit a gem to review
-* Write reviews about gems
-* Upvote/downvote other people's reviews
-* Comment on reviews
+- Submit a gem to review
+- Write reviews about gems
+- Upvote/downvote other people's reviews
+- Comment on reviews
 
 Some technical info!
 * Ruby version: ruby 2.0.0p247
