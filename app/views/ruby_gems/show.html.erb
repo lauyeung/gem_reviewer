@@ -87,7 +87,14 @@
 <%- end -%>
 
 <% if user_signed_in? && !@ruby_gem.reviewed_by?(current_user) %>
-  <%= render 'review_form' %>
+  <p><strong>Add New Gem Review</strong>
+    <%= simple_form_for [@ruby_gem, @review] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: 1..10 %>
+      <%= f.submit 'Save Review', class: 'small button' %>
+    <%- end -%>
+  </p>
 <% end %>
 
 
