@@ -12,7 +12,13 @@
             <i class="icon-thumbs-up"></i>
           </button>
         <%- end -%>
-        <span class="review_score"><%= review.total_score %></span>
+        <span class="review_score">
+          <%- if review.total_score != nil -%>
+            <%= review.total_score %>
+          <%- else -%>
+            0
+          <%- end -%>
+        </span>
         <%= simple_form_for [review, @vote ], html: {class: "downvote"} do |f| %>
           <%= f.input :score, as: :hidden, input_html: {value: -1} %>
            <button type="submit" class="small button alert round">
@@ -44,15 +50,22 @@
     </div>
   <%- end -%>
 
-  <strong>Start of Comments:</strong>
-  <% review.comments.each do |comment|  %>
-    <p class="comment"><%= comment.comment_content %> -- <span class="comment-user"><%= comment.user.username %></span></p>
-  <% end %>
+  <%- if review.comments.count > 0 -%>
+    <strong>Comments:</strong>
+    <% review.comments.each do |comment|  %>
+      <p class="comment"><%= comment.comment_content %> -- <span class="comment-user"><%= comment.user.username %></span></p>
+    <% end %>
+  <%- else -%>
+    <strong>No comments yet - add yours!</strong>
+  <%- end -%>
+
   <%- if user_signed_in? -%>
-    <%= simple_form_for [review, @comment] do |f| %>
-      <%= f.input :comment_content, label: "Comment on this review:" %>
-      <%= f.submit 'Save Comment', class: 'small button' %>
-    <%- end -%>
+    <p>
+      <%= simple_form_for [review, @comment] do |f| %>
+        <%= f.input :comment_content, label: "Comment on this review:" %>
+        <%= f.submit 'Save Comment', class: 'small button' %>
+      <%- end -%>
+    </p>
   <%- end -%>
 
 
