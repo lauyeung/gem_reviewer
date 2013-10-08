@@ -23,7 +23,8 @@
     <%- end -%>
 
     <div class="reviews large-11 columns">
-      <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %></p>
+      <p><strong>Rating: </strong><%= review.rating %> | <strong>Title: </strong><%= review.title %> |
+      <strong>By: </strong><%= review.user.username %>
       <p><%= simple_format(review.content) %></p>
     </div>
   </div>
@@ -45,7 +46,7 @@
 
   <strong>Start of Comments:</strong>
   <% review.comments.each do |comment|  %>
-    <p class="comment"><%= comment.comment_content %></p>
+    <p class="comment"><%= comment.comment_content %> -- <span class="comment-user"><%= comment.user.username %></span></p>
   <% end %>
   <%- if user_signed_in? -%>
     <%= simple_form_for [review, @comment] do |f| %>
