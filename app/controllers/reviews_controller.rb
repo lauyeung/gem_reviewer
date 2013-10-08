@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
     @ruby_gem = @review.ruby_gem
     if @ruby_gem.reviewed_by?(current_user)
       @review.destroy
-      redirect_to ruby_gems_path
+      redirect_to ruby_gem_path(@ruby_gem)
     end
   end
 
