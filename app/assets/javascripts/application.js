@@ -21,4 +21,5 @@ $(document).ready(function(e) {
     $("#update").click(function(e) {
         $("#review_form").removeClass("hidden_review_form");
     });
+
 });
