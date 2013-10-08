@@ -1,8 +1,8 @@
 <h1><%= @ruby_gem.name %></h1>
 
-<h3>Reviews</strong></h3>
+<h3>Reviews</h3>
 
-<% @ruby_gem.reviews.reject{|review|review.id.nil?}.each do |review| %>
+<% @reviews.each do |review| %>
   <div class= "row">
     <%- if current_user != nil -%>
       <div class= "center large-1 columns">
