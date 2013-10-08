@@ -3,10 +3,10 @@
 Gem Reviewer (http://gem-reviewer.herokuapp.com) is a review site for Ruby Gems.
 
 With Gem Reviewer, you can:
-- Submit a gem to review
-- Write reviews about gems
-- Upvote/downvote other people's reviews
-- Comment on reviews
+* Submit a gem to review
+* Write reviews about gems
+* Upvote/downvote other people's reviews
+* Comment on reviews
 
 Some technical info!
 * Ruby version: ruby 2.0.0p247
@@ -15,10 +15,10 @@ Some technical info!
 * Testing: Rspec, Capybara
 
 Contributers:
-* Alex Phinzy
-* Louise Au Yeung
-* Tom Corley
-* Stephanie Viccari
+* Alex Phinzy (github[https://github.com/Aphin715])
+* Louise Au Yeung (github[https://github.com/lauyeung])
+* Stephanie Viccari (github[https://github.com/SViccari])
+* Tom Corley (github[https://github.com/mgidea])
 
 Managed by:
-* Adam Sheehan
+* Adam Sheehan (github[https://github.com/atsheehan])
