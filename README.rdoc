@@ -13,3 +13,12 @@ Some technical info!
 * Rails version: Rails 4.0.0
 * Database: PostgreSQL
 * Testing: Rspec, Capybara
+
+Contributers:
+* Alex Phinzy
+* Louise Au Yeung
+* Tom Corley
+* Stephanie Viccari
+
+Managed by:
+* Adam Sheehan
