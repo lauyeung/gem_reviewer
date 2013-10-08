@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
       redirect_to ruby_gem_path([@ruby_gem]), notice: 'Comment saved!'
     else
       @vote = Vote.new
+      @review = Review.new
       @reviews = @ruby_gem.reviews.sort_by { |review| "review.total_score DESC" }.reject{|review|review.id.nil?}
       render 'ruby_gems/show'
     end
