@@ -15,7 +15,7 @@ feature "signing in", %Q{
     user = FactoryGirl.create(:user)
 
     visit new_user_session_path
-    fill_in "Email", with: user.email
+    fill_in "Login", with: user.email
     fill_in "Password", with: user.password
     click_button "Sign In"
 
@@ -35,7 +35,7 @@ feature "signing in", %Q{
   scenario 'a existing email with the wrong password is denied access ' do
     user = FactoryGirl.create(:user)
     visit new_user_session_path
-    fill_in "Email", with: user.email
+    fill_in "Login", with: user.email
     fill_in 'Password', with: 'incorrectpassword'
     click_button "Sign In"
 
@@ -47,7 +47,7 @@ feature "signing in", %Q{
   scenario "an already authenticated user cannot re-sign in" do
     user = FactoryGirl.create(:user)
     visit new_user_session_path
-    fill_in "Email", with: user.email
+    fill_in "Login", with: user.email
     fill_in 'Password', with: user.password
     click_button "Sign In"
 
