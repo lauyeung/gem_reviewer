@@ -50,7 +50,7 @@ gem 'devise'
 gem 'state_machine'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'zurb-foundation', '~> 4.0.0'
+gem 'zurb-foundation', '4.0.8'
 gem 'ransack'
 
 # Use ActiveModel has_secure_password
