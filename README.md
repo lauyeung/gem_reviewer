@@ -24,6 +24,11 @@ Review and Voting
 -------------------
 ![logged-in](https://lh3.googleusercontent.com/-wmGWvBrtWXg/UmXUqjf3vaI/AAAAAAAANYs/9Twixgsl5eM/w968-h370-no/gem_reviewer.png)
 
+Next Steps
+-------------------
+* Incorporate Ruby Gems API
+* Allow ability to edit/delete comments
+* Add votes for gems and/or comments
 
 Collaborators
 -------------------
