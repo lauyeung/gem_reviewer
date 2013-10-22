@@ -27,7 +27,7 @@ Review and Voting
 Next Steps
 -------------------
 * Incorporate Ruby Gems API
-* Allow ability to edit/delete comments
+* Add ability to edit/delete comments
 * Add votes for gems and/or comments
 
 Collaborators
