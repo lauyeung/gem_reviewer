@@ -16,6 +16,15 @@ Technical Requirements
 * PostgreSQL (<tt>rake db:migrate</tt> to set up the database, run <tt>rake db:test:prepare</tt> to set up the test database)
 * Run tests using <tt>rake spec</tt> or <tt>rspec [TEST TO RUN]</tt>
 
+ER Diagram
+-------------------
+![er-diagram](https://lh5.googleusercontent.com/-g9JYKnSlCZQ/UmXUpXngCuI/AAAAAAAANYg/-17izrsgudQ/w688-h421-no/gem_reviewer_er_diagram.png)
+
+Review and Voting
+-------------------
+![logged-in](https://lh3.googleusercontent.com/-wmGWvBrtWXg/UmXUqjf3vaI/AAAAAAAANYs/9Twixgsl5eM/w968-h370-no/gem_reviewer.png)
+
+
 Collaborators
 -------------------
 * [Louise Au Yeung](https://github.com/lauyeung)
