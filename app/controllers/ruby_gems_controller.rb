@@ -13,11 +13,15 @@ class RubyGemsController < ApplicationController
     #as two unique gems
     @ruby_gem = RubyGem.new(ruby_gem_params)
     if @ruby_gem.save
-      if ruby_gem_API_query(params) != "This rubygem could not be found."
+      #evaluates if the gem is already listed and returns an error if the
+      #input is empty
+      if ruby_gem_exists? 
         redirect_to new_ruby_gem_path, notice: 'Gem successfully saved!'
       else
-        redirect_to new_ruby_gem_path, notice: %Q[This ruby gem could not be found. 
-        Please use the following link to check your spelling:
+        redirect_to new_ruby_gem_path, notice: %Q[I'm sorry, but your
+        ruby gem could not be found. Please keep in mind that Ruby Gems
+        names do not include empty spaces. You can also use the following link 
+        to verify your gem's naming format:
         <a href="http://rubygems.org/gems">List of Ruby Gems</a>].html_safe
       end
     else
@@ -39,14 +43,21 @@ class RubyGemsController < ApplicationController
   end
 
   protected
-
   def ruby_gem_params
     params.require(:ruby_gem).permit(:name)
   end
 
-  def ruby_gem_API_query(params)
-    #BUG - Can't handle spaces
-    @gemname = params[:ruby_gem][:name]
+  def format_gem_name(params)
+    @name = params[:ruby_gem][:name]
+    @gemname = @name.downcase.split.join("")
+  end
+
+  def ruby_gem_API_query
+    format_gem_name(params)
     Gems.info "#{@gemname}"
   end
+
+  def ruby_gem_exists?
+    ruby_gem_API_query != "This rubygem could not be found."
+  end    
 end
