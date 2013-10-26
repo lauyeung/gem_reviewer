@@ -53,7 +53,7 @@ feature 'user adds gem', %Q{
     visit new_ruby_gem_path
     fill_in 'Name', with: 'crazymadeupname'
     click_button 'Add Gem'
-    expect(page).to have_content('This ruby gem could not be found.')
+    expect(page).to have_content('I\'m sorry, but your ruby gem could not be found.')
   end
 
   scenario 'try to add gem when not signed in' do
