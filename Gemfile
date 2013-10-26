@@ -43,6 +43,8 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'rake'
+  gem 'coveralls', require: false
 end
 
 gem 'simple_form'
