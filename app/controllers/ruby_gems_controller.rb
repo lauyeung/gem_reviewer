@@ -9,8 +9,6 @@ class RubyGemsController < ApplicationController
   end
 
    def create
-    #BUG - uniqueness is validating "Devise" and "devise"
-    #as two unique gems
     @ruby_gem = RubyGem.new(ruby_gem_params)
     if @ruby_gem.save
       #evaluates if the gem is already listed and returns an error if the
