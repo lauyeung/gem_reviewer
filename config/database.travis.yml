@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: gem_reviewer_test
+  username: postgres

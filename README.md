@@ -1,6 +1,10 @@
 Gem Reviewer README
 ===================
 
+[![Build Status](http://allthebadges.io/lauyeung/gem_reviewer/travis.png)](http://allthebadges.io/lauyeung/gem_reviewer/travis)
+[![Coverage](http://allthebadges.io/lauyeung/gem_reviewer/coveralls.png)](http://allthebadges.io/lauyeung/gem_reviewer/coveralls)
+[![Code Climate](http://allthebadges.io/lauyeung/gem_reviewer/code_climate.png)](http://allthebadges.io/lauyeung/gem_reviewer/code_climate)
+
 Gem Reviewer (http://gem-reviewer.herokuapp.com) is a review site for Ruby Gems.
 
 With Gem Reviewer, you can:
