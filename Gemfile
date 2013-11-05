@@ -43,7 +43,6 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
   gem 'quiet_assets'
-  gem 'gems'
   gem 'rake'
   gem 'coveralls', require: false
 end
@@ -55,6 +54,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'ransack'
+gem 'gems'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
