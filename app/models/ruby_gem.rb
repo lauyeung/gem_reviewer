@@ -6,7 +6,8 @@ class RubyGem < ActiveRecord::Base
     dependent: :nullify
 
   validates_presence_of :name
-  validates_uniqueness_of :name, message: 'already exists'
+  validates_uniqueness_of :name, :case_sensitive => false, message: 'already exists'
+  #evaluates 'devise' and 'Devise' as the same
 
   def reviewed_by?(user)
     reviews.pluck(:user_id).include?(user.id)

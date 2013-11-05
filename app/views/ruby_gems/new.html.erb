@@ -1,6 +1,7 @@
 <h1>Add New Ruby Gem</h1>
 
 <%= simple_form_for(@ruby_gem) do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, placeholder: 
+  "Do not include empty spaces"%>
   <%= f.submit 'Add Gem' %>
 <%- end -%>

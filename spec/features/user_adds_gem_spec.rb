@@ -20,7 +20,7 @@ feature 'user adds gem', %Q{
     user_signs_in(user)
     visit new_ruby_gem_path
     prev_count = RubyGem.count
-    fill_in 'Name', with: 'Devise'
+    fill_in 'Name', with: 'devise'
     click_button 'Add Gem'
     expect(RubyGem.count).to eql(prev_count + 1)
     expect(page).to have_content('Gem successfully saved!')
@@ -37,13 +37,23 @@ feature 'user adds gem', %Q{
 
   scenario 'try to add gem that already exists' do
     user_signs_in(user)
-    original = FactoryGirl.create(:ruby_gem)
+    visit new_ruby_gem_path
+    fill_in 'Name', with: 'devise'
+    click_button 'Add Gem'
     visit new_ruby_gem_path
     prev_count = RubyGem.count
-    fill_in 'Name', with: original.name
+    fill_in 'Name', with: 'devise'
     click_button 'Add Gem'
     expect(RubyGem.count).to eql(prev_count)
     expect(page).to have_content('already exists')
+  end
+
+  scenario 'user tries to add a gem that does not exist' do
+    user_signs_in(user)
+    visit new_ruby_gem_path
+    fill_in 'Name', with: 'crazymadeupname'
+    click_button 'Add Gem'
+    expect(page).to have_content('I\'m sorry, but your ruby gem could not be found.')
   end
 
   scenario 'try to add gem when not signed in' do
@@ -59,5 +69,4 @@ feature 'user adds gem', %Q{
     fill_in "Password", with: user.password
     click_button "Sign In"
   end
-
 end
