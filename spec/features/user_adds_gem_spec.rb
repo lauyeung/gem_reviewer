@@ -32,7 +32,7 @@ feature 'user adds gem', %Q{
     prev_count = RubyGem.count
     click_button 'Add Gem'
     expect(RubyGem.count).to eql(prev_count)
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("could not be found")
   end
 
   scenario 'try to add gem that already exists' do
